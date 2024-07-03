@@ -75,12 +75,20 @@ const TraductionProvider: React.FC<Props> = ({ children }) => {
         setIstranslating(false)
         if (translated) {
             setTranslatedText(translated)
-        } 
+        } else {
+            console.log("erreur de traduction ")
+            setError('erreur de translation vérifier votre clé et votre forfait')
+            setTimeout(() => {
+                setError('')
+            },5000)
+        }
+        
         setIstranslating(false)
-    } catch (error) {
+        } catch (error) {
+            console.log(error)
             setIstranslating(false)
             setTranslatedText(translatedText);
-            setError(error as string)
+            setError('erreur de translation vérifier votre clé et votre forfait')
             setTimeout(() => {
                 setError('')
             },5000)
