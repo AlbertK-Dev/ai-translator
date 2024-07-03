@@ -4,18 +4,19 @@ import React from 'react'
 type Props = {
 
     text?: string,
-    onClic: () => void,
+  onClic: () => void,
+    disabled?: boolean,
     
 
 
 
 }
-const TranslationButton:React.FC<Props> = ({ text='translate', onClic}) => {
+const TranslationButton:React.FC<Props> = ({ text='translate', onClic, disabled=false }) => {
   return (
 
-          <div onClick={onClic} className=' max-lg:rotate-90   rotate-0   text-white bg-blue-500   p-2 flex justify-center items-center rounded-full hover:cursor-pointer hover:bg-slate-700  '>
+          <button disabled={disabled} onClick={onClic} className={` max-lg:rotate-90   rotate-0   text-white    p-2 flex justify-center items-center rounded-full ${ disabled? 'bg-stone-800': 'hover:cursor-pointer hover:bg-slate-700 bg-blue-500'} `}>
               {text}
-          </div>
+          </button>
   
   )
 }

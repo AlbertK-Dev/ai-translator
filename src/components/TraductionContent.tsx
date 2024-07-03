@@ -8,17 +8,17 @@ type ContentProps = {
 
 const TraductionContent:React.FC<ContentProps> = ({editable=true}) => {
 
-    const { text, setText, translatedText } = useTraduction()
+    const { text, setText, translatedText, dest, error } = useTraduction()
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
-    console.log(e.target.value); // Affiche le contenu du textarea dans la console
+  
   }; 
   return (
     <textarea
-    value={editable? text: translatedText}
-    onChange={handleChange}
-    readOnly={!editable}
-    className='bg-slate-50 flex-1 rounded-lg p-1'
+      value={editable ? text : translatedText[dest]}
+      onChange={handleChange}
+      readOnly={!editable}
+      className={`bg-slate-50 flex-1 min-h-80 rounded-lg p-1 ${error ? 'border-red-700 bg-red-200': ''}`}
     rows={5} // Définit le nombre de lignes visibles
   />
   )

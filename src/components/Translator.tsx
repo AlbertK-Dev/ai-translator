@@ -8,13 +8,13 @@ import { useTraduction } from '../Hooks/useTraduction'
 
 const Translator:React.FC = () => {
 
-const {src, dest, isTranslating, translate} = useTraduction()
+const {src, dest, isTranslating, translate, text} = useTraduction()
 
   return (
-      <div className=' flex w-full h-full flex-col lg:flex-row  justify-between max-h-full relative gap-1'>
+      <div className=' flex w-full  max-h-full h-full flex-col lg:flex-row   justify-between   gap-1'>
           <TraductionContainer src={src} dest={dest}  />
           <div className=' relative bg-blue-200 flex justify-center items-center' >
-          <TranslationButton text={isTranslating?'...':'>|'} onClic={translate} />
+          <TranslationButton disabled={text.length === 0} text={isTranslating?'...':'>|'} onClic={translate} />
           </div>
        
           <TraductionContainer isTranslated src={src} dest={dest}  />
