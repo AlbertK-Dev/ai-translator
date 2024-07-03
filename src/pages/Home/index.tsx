@@ -17,12 +17,12 @@ const Home: React.FC = () => {
       <div className=' flex-1 bg-slate-300 min-h-full flex '>
       <div className='controlPanel hidden  flex-col gap-3 p-2  sm:flex flex-1'>
         <h1 className=' text-center font-extrabold  w-full uppercase underline'>Panneau de control</h1>
-        <button type="button" onClick={openModal} className=' p-2 rounded-xl border-2 border-stone-700'>Modifier la clé d'api</button>
+        <button type="button" onClick={openModal} className='p-2 rounded-sm border-2 bg-stone-600 hover:bg-stone-900 text-white'>Modifier la clé d'api</button>
 </div>
       <div className="translator flex-col w-full overflow-auto gap-2 m-2 sm:w-3/4  md:w-2/3 bg-blue-50 flex justify-center items-center ">
         <div className="appbar flex sm:hidden">
 
-          <button type="button" onClick={openModal} className=' p-2 rounded-sm border-2 border-stone-700'>Modifier la clé d'api</button>
+          <button type="button" onClick={openModal} className=' p-2 rounded-sm border-2 bg-stone-600 hover:bg-stone-900 text-white'>Modifier la clé d'api</button>
 
         </div>
                 <Translator/>
@@ -62,7 +62,6 @@ const Home: React.FC = () => {
               
             </Modal>
     </div>
-    
   )
 }
 

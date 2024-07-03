@@ -15,6 +15,7 @@
     padding: 20px;
     border-radius: 4px;
     position: relative;
+    margin: 5px;
 }
 
 .modal-close {

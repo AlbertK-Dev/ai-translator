@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <div className='p-0 flex justify-center  items-center h-screen w-screen' >
+      <div className='p-0 flex overflow-auto justify-center  items-center sm:h-screen sm:max-h-screen w-screen' >
         <TraductionProvider>
            <Router/>
         </TraductionProvider>
