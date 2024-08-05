@@ -1,30 +1,42 @@
 import { AvailableFormat } from "../components/TraductionTab";
 
-// api.js
-import OpenAI from "openai";
-
-
 export type Translated = {
     [key in AvailableFormat]: string;
 };
 
+
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+
+
+const prompt = (src:AvailableFormat, dest: AvailableFormat, text:string) => {
+    return `You are a helpful assistant. 
+    Translate the following \n\n${text}\n\n from \n\n${src}\n\n to \n[${dest}]\n\n and return the result as a JSON stringified (give me just JSON object to parse, don't add backtick and 'json' word) object where the key is the target language code and the value is the translated text.`
+};
+
+
+
 export const translateText = async (apiKey: string, src: AvailableFormat, dest: AvailableFormat[], text: string): Promise<Translated> => {
     try {
-        const openai = new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
 
+        // Access your API key as an environment variable (see "Set up your API key" above)
+const genAI = new GoogleGenerativeAI("AIzaSyCcZdQsHuHnM0_jYHB6EYsj5RrWZ2XU9fE");
+
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+
+
+ 
         const translations: Partial<Translated> = {};
 
-        for (const lang of dest) {
-            const completion = await openai.chat.completions.create({
-                messages: [
-                    { role: "system", content: `You are a helpful assistant. Translate the following text from ${src} to ${lang} and return the result as a JSON object where the key is the target language code and the value is the translated text.` },
-                    { role: "user", content: text },
-                ],
-                model: "gpt-3.5-turbo",
-            });
+ 
 
-            if (completion && completion.choices && completion.choices.length > 0) {
-                const messageContent = completion.choices[0].message?.content?.trim();
+        for (const lang of dest) {
+            console.log(prompt(src, lang, text))
+            const result = await model.generateContent(prompt(src, lang, text));
+            console.log(result.response.text());
+
+            if (result.response.text()) {
+                const messageContent = result.response.text().trim()
                 if (messageContent) {
                     const result = JSON.parse(messageContent);
                     translations[lang] = result[lang] || 'erreur';
