@@ -44,7 +44,7 @@ const TraductionProvider: React.FC<Props> = ({ children }) => {
         'zh-CN': 'résultat en chinois'
     })
     const [isTranslating, setIstranslating] = useState(false);
-    const [apiKey, setApiKey] = useState("sk-proj-CTZmQzpbLGgtwNGs1P3jT3BlbkFJFVvTlcRnfIUMqveXpfY9")
+    const [apiKey, setApiKey] = useState("AIzaSyCcZdQsHuHnM0_jYHB6EYsj5RrWZ2XU9fE")
     
     // Fonction pour mettre à jour les langues
     const setTraduction = (newSrc: AvailableFormat, newDest: AvailableFormat = dest, text='', newTranslatedText: Partial<Translated> = translatedText) => {
