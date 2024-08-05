@@ -20,7 +20,7 @@ export const translateText = async (apiKey="AIzaSyCcZdQsHuHnM0_jYHB6EYsj5RrWZ2XU
     try {
 
         // Access your API key as an environment variable (see "Set up your API key" above)
-const genAI = new GoogleGenerativeAI(apiKey);
+const genAI = new GoogleGenerativeAI(apiKey.replace('"',"").trim());
 
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
